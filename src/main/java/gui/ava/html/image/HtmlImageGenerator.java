@@ -78,7 +78,8 @@ public class HtmlImageGenerator {
                 final int y1 = (int) bound.getY();
                 final int x2 = (int) (x1 + bound.getWidth());
                 final int y2 = (int) (y1 + bound.getHeight());
-                markup.append(String.format("<area href=\"%s\" coords=\"%s,%s,%s,%s\" shape=\"rect\"", link.getHref(), x1, y1, x2, y2));
+                markup.append(String.format("<area href=\"%s\" coords=\"%s,%s,%s,%s\" shape=\"rect\"", link.getHref(),
+                        x1, y1, x2, y2));
                 final String title = link.getTitle();
                 if (title != null && !title.equals("")) {
                     markup.append(" title=\"").append(title.replace("\"", "&quot;")).append("\"");
@@ -91,8 +92,8 @@ public class HtmlImageGenerator {
     }
 
     public List<LinkInfo> getLinks() {
-//        final LinkHarvester harvester = new LinkHarvester(editorPane);
-//        return harvester.getLinks();
+        // final LinkHarvester harvester = new LinkHarvester(editorPane);
+        // return harvester.getLinks();
         return Collections.emptyList();
     }
 
@@ -104,7 +105,8 @@ public class HtmlImageGenerator {
         FileWriter writer = null;
         try {
             writer = new FileWriter(file);
-            writer.append("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\n");
+            writer.append(
+                    "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\n");
             writer.append("<html>\n<head></head>\n");
             writer.append("<body style=\"margin: 0; padding: 0; text-align: center;\">\n");
             final String htmlMap = getLinksMapMarkup("map");
@@ -133,7 +135,8 @@ public class HtmlImageGenerator {
     public void saveAsImage(File file) {
         BufferedImage image = getBufferedImage();
 
-        BufferedImage bufferedImageToWrite = new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_INT_RGB);
+        BufferedImage bufferedImageToWrite = new BufferedImage(image.getWidth(), image.getHeight(),
+                BufferedImage.TYPE_INT_RGB);
         bufferedImageToWrite.createGraphics().drawImage(image, 0, 0, Color.WHITE, null);
 
         final String formatName = FormatNameUtil.formatForFilename(file.getName());
@@ -192,10 +195,8 @@ public class HtmlImageGenerator {
     public void show() {
         JFrame.setDefaultLookAndFeelDecorated(true);
         JFrame frame = new JFrame();
-        frame.setTitle("My First Swing Application");
+        frame.setTitle("Image Preview");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        JLabel label = new JLabel("Welcome");
-        frame.add(label);
         frame.add(editorPane);
         frame.pack();
         frame.setVisible(true);
